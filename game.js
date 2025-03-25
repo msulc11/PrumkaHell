@@ -264,7 +264,7 @@ const scenes = {
         text: function() {
             return `Vítej, ${gameState.playerName}! Než začneš své dobrodružství na průmyslové škole, vyber si, kterého profesora chceš mít na závěrečné zkoušce:`;
         },
-        image: "",
+        image: "images/finalboss.jpg",
         render: function() {
             // Speciální funkce pro vykreslení profesorů s obrázky
             const sceneText = document.getElementById('sceneText');
