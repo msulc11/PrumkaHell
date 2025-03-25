@@ -39,7 +39,7 @@ Vítejte v textové adventuře ze života studentů průmyslové školy! V této
 ### Základní statistiky
 
 - **Zdraví:** Začínáte se 100 body zdraví
-- **Peníze:** Začínáte s 6000 Kč
+- **Peníze:** Začínáte s 200 Kč
 - **Inventář:** Můžete sbírat a používat různé předměty
 
 ### Aktivity ve hře
