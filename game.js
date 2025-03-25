@@ -2,7 +2,7 @@
 const gameState = {
     playerName: "",
     health: 100,
-    money: 6000, // Starting money amount
+    money: 200, // Starting money amount
     inventory: [],
     currentScene: 'intro',
     flags: {
