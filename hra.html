@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRUMKA HELL - Udělej maturitu</title>
+    <meta
+      name="description"
+      content="Textová adventura ze života na průmyslové škole. Zvládni projekty a udělej maturitu!"
+    />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styly.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="header">
+        <h1>Průmka HELL - Udělej maturitu</h1>
+        <div class="tagline">Přežij průmku, pokud dokážeš</div>
+        <div class="stats">
+          <div class="health-bar">
+            <div class="health-label">Zdraví:</div>
+            <div class="health-bar-outer">
+              <div class="health-bar-inner" id="healthBar"></div>
+            </div>
+            <div class="health-text" id="healthText">100/100</div>
+          </div>
+          <div class="money-display">
+            <div class="money-label">Peníze:</div>
+            <div class="money-text" id="money">200 Kč</div>
+          </div>
+          <div class="inventory" id="inventory">
+            <span class="inventory-label">Inventář:</span>
+            <span id="inventoryItems">Prázdný</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="name-input-container" id="nameInputContainer">
+        <h2>Zadej své jméno</h2>
+        <input
+          type="text"
+          id="playerNameInput"
+          placeholder="Zadej své jméno..."
+          maxlength="20"
+        />
+        <button class="choice-btn" id="confirmNameButton">
+          Začít dobrodružství
+        </button>
+      </div>
+
+      <div class="game-screen" id="gameScreen" style="display: none">
+        <div class="scene" id="sceneContainer">
+          <div class="scene-image" id="sceneImage"></div>
+          <div class="scene-text" id="sceneText">
+            <p>Vítej v dobrodružství. Tvoje cesta k maturitě právě začíná...</p>
+          </div>
+        </div>
+
+        <div class="choices" id="choicesContainer">
+          <button class="choice-btn" id="startButton">Začni svou cestu</button>
+        </div>
+      </div>
+
+      <div class="inventory-display" id="inventoryDisplay">
+        <h3>Tvoje předměty</h3>
+        <div class="inventory-items" id="inventoryItemsDisplay"></div>
+      </div>
+
+      <footer class="game-footer">
+        <p>
+          &copy; 2025 PRUMKA HELL - Textová hra o životě na průmyslové škole
+        </p>
+      </footer>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
