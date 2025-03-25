@@ -914,7 +914,7 @@ Máš u sebe ${gameState.money} Kč.`;
         image: "images/game_end.jpg",
         choices: [
             { text: "Hrát znovu", nextScene: "intro", action: () => {
-                window.location.href = 'hra.html';
+                window.location.href = 'index.html';
             }}
         ]
     },
@@ -2139,7 +2139,7 @@ function resetGame() {
     updateInventoryDisplay();
     
     // Reload the page to restart the game
-    window.location.href = 'hra.html';
+    window.location.href = 'index.html';
 }
 
 // Function to load a scene
