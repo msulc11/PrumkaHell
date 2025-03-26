@@ -626,7 +626,51 @@ Máš u sebe ${gameState.money} Kč.`;
             { text: "Odejít zpět na chodbu", nextScene: "mainHall" }
         ]
     },
-    
+    examResults: {
+        text: function() {
+            const passed = gameState.examScore >= 18;
+            const scoreClass = passed ? "success-score" : "fail-score";
+            
+            return `<h2 class="${passed ? 'success-title' : 'fail-title'}">VÝSLEDKY MATURITNÍ ZKOUŠKY</h2>
+                <div class="result-container">
+                    <p>Správně zodpovězených otázek: <span class="${scoreClass}">${gameState.examScore}/20</span></p>
+                    <p>Požadovaný počet: <span class="required-score">18/20</span></p>
+                </div>
+                <div class="${passed ? 'success-message' : 'fail-message'}">
+                    ${passed ? 
+                        '<h3>🎓 GRATULUJEME! 🎓</h3><p>Úspěšně jsi složil maturitní zkoušku!</p>' : 
+                        '<h3>❌ NEÚSPĚCH ❌</h3><p>Bohužel jsi neuspěl. K úspěšnému složení bylo potřeba alespoň 18 správných odpovědí.</p>'}
+                </div>`;
+        },
+        image: function() {
+            return gameState.examScore >= 18 ? "images/exam_success.jpg" : "images/exam_fail.jpg";
+        },
+        choices: function() {
+            // Dynamicky vracíme různé volby podle toho, zda hráč uspěl nebo ne
+            if (gameState.examScore >= 18) {
+                return [
+                    { 
+                        text: "🎉 JDEME SLAVIT!",
+                        nextScene: "gameEndingSuccess"
+                    }
+                ];
+            } else {
+                return [
+                    { 
+                        text: "😔 OPAKOVAT ZKOUŠKU",
+                        nextScene: "examStart",
+                        action: () => {
+                            updateHealth(-10); // Neúspěch ubere trochu zdraví
+                        }
+                    },
+                    {
+                        text: "😨 VZDÁT TO", 
+                        nextScene: "gameEndingFail"
+                    }
+                ];
+            }
+        }
+    },
     fablab: {
         text: function() {
             return `FABLAB je plný tvořivé energie. Všude kolem jsou 3D tiskárny, laserové řezačky, mikrokontroléry a elektronické součástky. Několik studentů pracuje na různých projektech - někdo sestavuje robota, další programuje Arduino, jiní navrhují 3D modely. V rohu místnosti vidíš staršího studenta, který vypadá, že tady tráví hodně času.`;
@@ -3815,51 +3859,7 @@ for (let i = 0; i < questions.length; i++) {
     }
     
     // Vytvoř scénu pro výsledky
-    scenes.examResults = {
-        text: function() {
-            const passed = gameState.examScore >= 18;
-            const scoreClass = passed ? "success-score" : "fail-score";
-            
-            return `<h2 class="${passed ? 'success-title' : 'fail-title'}">VÝSLEDKY MATURITNÍ ZKOUŠKY</h2>
-                <div class="result-container">
-                    <p>Správně zodpovězených otázek: <span class="${scoreClass}">${gameState.examScore}/20</span></p>
-                    <p>Požadovaný počet: <span class="required-score">18/20</span></p>
-                </div>
-                <div class="${passed ? 'success-message' : 'fail-message'}">
-                    ${passed ? 
-                        '<h3>🎓 GRATULUJEME! 🎓</h3><p>Úspěšně jsi složil maturitní zkoušku!</p>' : 
-                        '<h3>❌ NEÚSPĚCH ❌</h3><p>Bohužel jsi neuspěl. K úspěšnému složení bylo potřeba alespoň 18 správných odpovědí.</p>'}
-                </div>`;
-        },
-        image: function() {
-            return gameState.examScore >= 18 ? "images/exam_success.jpg" : "images/exam_fail.jpg";
-        },
-        choices: function() {
-            // Dynamicky vracíme různé volby podle toho, zda hráč uspěl nebo ne
-            if (gameState.examScore >= 18) {
-                return [
-                    { 
-                        text: "🎉 JDEME SLAVIT!",
-                        nextScene: "gameEndingSuccess"
-                    }
-                ];
-            } else {
-                return [
-                    { 
-                        text: "😔 OPAKOVAT ZKOUŠKU",
-                        nextScene: "examStart",
-                        action: () => {
-                            updateHealth(-10); // Neúspěch ubere trochu zdraví
-                        }
-                    },
-                    {
-                        text: "😨 VZDÁT TO", 
-                        nextScene: "gameEndingFail"
-                    }
-                ];
-            }
-        }
-    };
+   
     
     // Přidej scénu pro úspěšné zakončení hry
     scenes.gameEndingSuccess = {
