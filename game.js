@@ -2091,6 +2091,756 @@ Máš tři možnosti:
             }},
             { text: "Vrátit se do hlavní haly", nextScene: "mainHall" }
         ]
+    },
+    
+    bribeFailure: {
+        text: function() {
+            return `<h2 class="bribe-title">Úplatek odmítnut!</h2>
+                <p>Profesor zrudne a prudce vstane ze židle.</p>
+                <p>"CO SI TO DOVOLUJETE?!" vykřikne a praští pěstí do stolu. "Tohle je akademická půda, ne tržiště!"</p>
+                <p>Během několika minut jste předvoláni před disciplinární komisi a vyloučeni ze školy.</p>
+                <p>Váš pokus o podplacení ukončil vaši akademickou kariéru...</p>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            { text: "Dokončit hru", nextScene: "gameEndingFail1"}
+        ]
+    },
+    
+    // Přidáme novou scénu examQuestion1 s 20 otázkami
+    examQuestion1: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 1/20</h3>
+            <div class="question-text">Jaká je hlavní výhoda objektově orientovaného programování?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Rychlejší běh programu",
+                nextScene: "examQuestion2",
+                action: () => {}
+            },
+            {
+                text: "Zapouzdření dat a znovupoužitelnost kódu",
+                nextScene: "examQuestion2",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Menší velikost výsledného programu",
+                nextScene: "examQuestion2",
+                action: () => {}
+            },
+            {
+                text: "Jednodušší syntaxe programovacího jazyka",
+                nextScene: "examQuestion2",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion2: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 2/20</h3>
+            <div class="question-text">Jaký je rozdíl mezi kompilovaným a interpretovaným jazykem?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Kompilovaný jazyk se překládá celý najednou, interpretovaný se provádí příkaz po příkazu",
+                nextScene: "examQuestion3",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Kompilovaný jazyk je vždy rychlejší než interpretovaný",
+                nextScene: "examQuestion3",
+                action: () => {}
+            },
+            {
+                text: "Interpretovaný jazyk nepotřebuje žádný nástroj ke spuštění",
+                nextScene: "examQuestion3",
+                action: () => {}
+            },
+            {
+                text: "Kompilovaný jazyk vždy produkuje menší soubory",
+                nextScene: "examQuestion3",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion3: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 3/20</h3>
+            <div class="question-text">Co je to router v počítačové síti?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Zařízení sloužící pouze k bezdrátovému připojení",
+                nextScene: "examQuestion4",
+                action: () => {}
+            },
+            {
+                text: "Zařízení propojující dvě různé sítě na fyzické vrstvě",
+                nextScene: "examQuestion4",
+                action: () => {}
+            },
+            {
+                text: "Zařízení směrující pakety mezi různými sítěmi",
+                nextScene: "examQuestion4",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Zařízení zesilující signál v síti",
+                nextScene: "examQuestion4",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion4: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 4/20</h3>
+            <div class="question-text">Co je to DNS v kontextu počítačových sítí?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Domain Name System - systém překládající doménová jména na IP adresy",
+                nextScene: "examQuestion5",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Data Network Security - protokol pro zabezpečení dat",
+                nextScene: "examQuestion5",
+                action: () => {}
+            },
+            {
+                text: "Dynamic Network Service - služba pro dynamické přidělování IP adres",
+                nextScene: "examQuestion5",
+                action: () => {}
+            },
+            {
+                text: "Digital Naming Standard - standard pro pojmenování digitálních zařízení",
+                nextScene: "examQuestion5",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion5: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 5/20</h3>
+            <div class="question-text">Který z následujících datových typů je nejlepší pro uložení desetinného čísla v Javě?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "int",
+                nextScene: "examQuestion6",
+                action: () => {}
+            },
+            {
+                text: "double",
+                nextScene: "examQuestion6",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "char",
+                nextScene: "examQuestion6",
+                action: () => {}
+            },
+            {
+                text: "boolean",
+                nextScene: "examQuestion6",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion6: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 6/20</h3>
+            <div class="question-text">Co je to HTTP stavový kód 404?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Not Found - požadovaná stránka nebyla nalezena",
+                nextScene: "examQuestion7",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Forbidden - přístup ke stránce je zakázán",
+                nextScene: "examQuestion7",
+                action: () => {}
+            },
+            {
+                text: "OK - požadavek byl úspěšně zpracován",
+                nextScene: "examQuestion7",
+                action: () => {}
+            },
+            {
+                text: "Internal Server Error - chyba na straně serveru",
+                nextScene: "examQuestion7",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion7: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 7/20</h3>
+            <div class="question-text">Co je hlavní funkcí operační paměti (RAM)?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Trvalé ukládání dat a programů",
+                nextScene: "examQuestion8",
+                action: () => {}
+            },
+            {
+                text: "Dočasné uložení dat a programů během zpracování",
+                nextScene: "examQuestion8",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Zálohování dat z pevného disku",
+                nextScene: "examQuestion8",
+                action: () => {}
+            },
+            {
+                text: "Provádění aritmetických a logických operací",
+                nextScene: "examQuestion8",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion8: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 8/20</h3>
+            <div class="question-text">Co je to SQL injection?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Technika optimalizace databázových dotazů",
+                nextScene: "examQuestion9",
+                action: () => {}
+            },
+            {
+                text: "Způsob zrychlení databáze vložením speciálních instrukcí",
+                nextScene: "examQuestion9",
+                action: () => {}
+            },
+            {
+                text: "Typ útoku vložením škodlivého SQL kódu do vstupu aplikace",
+                nextScene: "examQuestion9",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Metoda pro vkládání velkého množství dat do databáze",
+                nextScene: "examQuestion9",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion9: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 9/20</h3>
+            <div class="question-text">Co je to binary search (binární vyhledávání)?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Algoritmus pro vyhledávání pouze binárních souborů",
+                nextScene: "examQuestion10",
+                action: () => {}
+            },
+            {
+                text: "Vyhledávací algoritmus s logaritmickou složitostí pro seřazená data",
+                nextScene: "examQuestion10",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Algoritmus pro vyhledávání v binárních stromech",
+                nextScene: "examQuestion10",
+                action: () => {}
+            },
+            {
+                text: "Metoda vyhledávání dat v hexadecimální soustavě",
+                nextScene: "examQuestion10",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion10: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 10/20</h3>
+            <div class="question-text">K čemu slouží CSS v HTML dokumentu?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "K definování struktury dokumentu",
+                nextScene: "examQuestion11",
+                action: () => {}
+            },
+            {
+                text: "K definování stylů a vzhledu dokumentu",
+                nextScene: "examQuestion11",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "K programování interaktivních funkcí",
+                nextScene: "examQuestion11",
+                action: () => {}
+            },
+            {
+                text: "K komunikaci s databází",
+                nextScene: "examQuestion11",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion11: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 11/20</h3>
+            <div class="question-text">Co je to RAID v kontextu ukládání dat?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Random Access to Indexed Data - metoda náhodného přístupu k indexovaným datům",
+                nextScene: "examQuestion12",
+                action: () => {}
+            },
+            {
+                text: "Redundant Array of Independent Disks - redundantní pole nezávislých disků",
+                nextScene: "examQuestion12",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Remote Access and Information Distribution - vzdálený přístup a distribuce informací",
+                nextScene: "examQuestion12",
+                action: () => {}
+            },
+            {
+                text: "Recovery And Information Debugging - obnova a ladění informací",
+                nextScene: "examQuestion12",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion12: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 12/20</h3>
+            <div class="question-text">Co je to IPv6?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Nová verze internetového protokolu s delšími adresami než IPv4",
+                nextScene: "examQuestion13",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Protokol pro komunikaci mezi šesti zařízeními v síti",
+                nextScene: "examQuestion13",
+                action: () => {}
+            },
+            {
+                text: "Bezdrátový protokol pro přenos dat v internetu věcí",
+                nextScene: "examQuestion13",
+                action: () => {}
+            },
+            {
+                text: "Protokol pro šifrování dat v síti s 6 vrstvami zabezpečení",
+                nextScene: "examQuestion13",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion13: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 13/20</h3>
+            <div class="question-text">Co znamená zkratka HDMI?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "High Definition Media Interface",
+                nextScene: "examQuestion14",
+                action: () => {}
+            },
+            {
+                text: "High Data Management Interface",
+                nextScene: "examQuestion14",
+                action: () => {}
+            },
+            {
+                text: "High Definition Multimedia Interface",
+                nextScene: "examQuestion14",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "High Digital Media Integration",
+                nextScene: "examQuestion14",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion14: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 14/20</h3>
+            <div class="question-text">Co je to algoritmus?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Speciální typ programovacího jazyka pro matematické výpočty",
+                nextScene: "examQuestion15",
+                action: () => {}
+            },
+            {
+                text: "Konečná posloupnost přesně definovaných instrukcí k řešení určitého problému",
+                nextScene: "examQuestion15",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Software pro převod programovacího jazyka do strojového kódu",
+                nextScene: "examQuestion15",
+                action: () => {}
+            },
+            {
+                text: "Hardwarové zařízení pro urychlení matematických výpočtů",
+                nextScene: "examQuestion15",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion15: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 15/20</h3>
+            <div class="question-text">Co je to virtualizace v IT?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Vytvoření virtuální (nikoliv skutečné) verze něčeho, jako je hardware, OS nebo síťové zdroje",
+                nextScene: "examQuestion16",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Proces vytváření 3D modelů pro počítačové hry a simulace",
+                nextScene: "examQuestion16",
+                action: () => {}
+            },
+            {
+                text: "Technika pro vizualizaci velkých datových souborů",
+                nextScene: "examQuestion16",
+                action: () => {}
+            },
+            {
+                text: "Metoda pro zálohování dat do cloudu",
+                nextScene: "examQuestion16",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion16: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 16/20</h3>
+            <div class="question-text">Jaký je rozdíl mezi TCP a UDP protokoly?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "TCP je rychlejší, ale méně spolehlivý než UDP",
+                nextScene: "examQuestion17",
+                action: () => {}
+            },
+            {
+                text: "UDP pracuje pouze s IPv6, zatímco TCP s IPv4",
+                nextScene: "examQuestion17",
+                action: () => {}
+            },
+            {
+                text: "TCP zajišťuje spolehlivé doručení dat, zatímco UDP nezaručuje doručení ani pořadí paketů",
+                nextScene: "examQuestion17",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "TCP se používá pouze pro webové stránky, UDP pro vše ostatní",
+                nextScene: "examQuestion17",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion17: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 17/20</h3>
+            <div class="question-text">Co je hlavním cílem normalizace databáze?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Zrychlit databázové dotazy",
+                nextScene: "examQuestion18",
+                action: () => {}
+            },
+            {
+                text: "Minimalizovat redundanci dat a zvýšit integritu dat",
+                nextScene: "examQuestion18",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Maximalizovat velikost databáze",
+                nextScene: "examQuestion18",
+                action: () => {}
+            },
+            {
+                text: "Usnadnit zálohování dat",
+                nextScene: "examQuestion18",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion18: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 18/20</h3>
+            <div class="question-text">Co je to REST API?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Rozhraní pro programování aplikací využívající HTTP metody pro komunikaci",
+                nextScene: "examQuestion19",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Technika pro odpočinek procesoru při vysoké zátěži",
+                nextScene: "examQuestion19",
+                action: () => {}
+            },
+            {
+                text: "Framework pro testování webových aplikací",
+                nextScene: "examQuestion19",
+                action: () => {}
+            },
+            {
+                text: "Protokol pro rychlou výměnu dat mezi databázemi",
+                nextScene: "examQuestion19",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion19: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 19/20</h3>
+            <div class="question-text">Co je to HTTPS?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Nová verze HTTP protokolu s podporou pro streamování",
+                nextScene: "examQuestion20",
+                action: () => {}
+            },
+            {
+                text: "HTTP protokol s integrovaným zabezpečením (šifrováním)",
+                nextScene: "examQuestion20",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "HTTP protokol optimalizovaný pro velké datové přenosy",
+                nextScene: "examQuestion20",
+                action: () => {}
+            },
+            {
+                text: "Hybridní protokol kombinující HTTP a FTP",
+                nextScene: "examQuestion20",
+                action: () => {}
+            }
+        ]
+    },
+    
+    examQuestion20: {
+        text: function() {
+            return `<h3 class="question-number">Otázka 20/20</h3>
+            <div class="question-text">Co je to open-source software?</div>`;
+        },
+        image: "images/exam_test.jpg",
+        choices: [
+            {
+                text: "Software, který je zdarma, ale jeho zdrojový kód není veřejně dostupný",
+                nextScene: "examResults",
+                action: () => {}
+            },
+            {
+                text: "Software s otevřeným zdrojovým kódem, který může kdokoliv prohlížet, upravovat a distribuovat",
+                nextScene: "examResults",
+                action: () => {
+                    gameState.examScore += 1;
+                }
+            },
+            {
+                text: "Software, který funguje pouze na otevřených platformách",
+                nextScene: "examResults",
+                action: () => {}
+            },
+            {
+                text: "Software, který není dokončený a je ve vývoji",
+                nextScene: "examResults",
+                action: () => {}
+            }
+        ]
+    },
+    
+    gameEndingSuccess: {
+        text: function() {
+            // Přidání CSS do textu scény
+            return `<style>
+                .ending-container {
+                    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(32, 201, 151, 0.1));
+                    border-radius: 10px;
+                    padding: 20px;
+                    border-left: 5px solid #28a745;
+                    margin-bottom: 15px;
+                }
+                .ending-title {
+                    color: #28a745;
+                    font-size: 2em;
+                    text-align: center;
+                    margin-bottom: 20px;
+                    text-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+                }
+                .stats-container {
+                    background-color: rgba(0, 0, 0, 0.2);
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-top: 20px;
+                }
+                .stat-item {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    padding-bottom: 5px;
+                }
+                .stat-value {
+                    font-weight: bold;
+                    color: #20c997;
+                }
+                .game-credits {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-style: italic;
+                    color: #adb5bd;
+                    font-size: 0.9em;
+                }
+            </style>
+            
+            <div class="ending-container">
+                <h1 class="ending-title">🎓 ÚSPĚŠNĚ DOKONČENO 🎓</h1>
+                
+                <p>Gratulujeme! Úspěšně jsi dokončil střední školu a složil maturitní zkoušku. ${gameState.playerName ? gameState.playerName : "Student"}, můžeš být na sebe hrdý/á.</p>
+                
+                <p>Tvé úsilí a odhodlání tě dovedly až do konce. Nyní před tebou stojí nové výzvy - vysoká škola nebo kariéra. Ale to už je jiný příběh...</p>
+                
+                <div class="stats-container">
+                    <h3>FINÁLNÍ STATISTIKY</h3>
+                    <div class="stat-item">
+                        <span>Zdraví:</span>
+                        <span class="stat-value">${gameState.health}/100</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Peníze:</span>
+                        <span class="stat-value">${gameState.money} Kč</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Předměty:</span>
+                        <span class="stat-value">${gameState.inventory.length > 0 ? gameState.inventory.join(", ") : "žádné"}</span>
+                    </div>
+                </div>
+                
+                <div class="game-credits">
+                    <p>S TÍMTO SE S VÁMI LOUČÍ TŘÍDA I4B</p>
+                    <p>© PRŮMKA HELL 2025</p>
+                </div>
+            </div>`;
+        },
+        image: "images/graduation.jpg",
+        choices: [
+            { 
+                text: "🔄 HRÁT ZNOVU", 
+                nextScene: "intro", 
+                action: () => {
+                    resetGame(); // Resetuje hru pro nové hraní
+                }
+            },
+            {
+                text: "👋 KONEC",
+                action: () => {
+                    // Resetujeme herní stav před ukončením
+                    resetGame();
+                    
+                    // Přesměrování na stránku Průmyslovky Jičín
+                    window.location.href = "https://prumyslovkajicin.cz/";
+                }
+            }
+        ]
     }
 };
 
