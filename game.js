@@ -217,7 +217,13 @@ function initializeGame() {
             // Show boss selection first
             loadScene('chooseFinalBoss');
         } else {
-            alert("Zadej svoje jméno pro pokračování!");
+            // Remove alert and just change input appearance
+            playerNameInput.style.border = '2px solid #FF5722';
+            playerNameInput.placeholder = "Zadej svoje jméno pro pokračování!";
+            setTimeout(() => {
+                playerNameInput.style.border = '2px solid #1f4287';
+                playerNameInput.placeholder = "Zadej své jméno...";
+            }, 2000);
         }
     });
 
@@ -592,7 +598,11 @@ Máš u sebe ${gameState.money} Kč.`;
                 choices.push({ text: "Koupit Energetické Gumídky (120 Kč, +50 zdraví)", nextScene: "mainHall", action: () => {
                     updateHealth(50);
                     updateMoney(-120);
-                    alert("Cítíš, jak se ti po snědení speciálních gumídků vrací energie! Tvé zdraví se výrazně zlepšilo.");
+                    // Remove alert and show message in scene text
+                    const healthMessage = document.createElement('p');
+                    healthMessage.textContent = "Cítíš, jak se ti po snědení speciálních gumídků vrací energie! Tvé zdraví se výrazně zlepšilo.";
+                    healthMessage.style.color = '#64ffda';
+                    document.getElementById('sceneText').appendChild(healthMessage);
                 }});
             }
             
@@ -2372,7 +2382,16 @@ function updateHealthDisplay() {
         
         // Show warning if health is critically low
         if (gameState.health <= 10 && !gameState.lowHealthWarningShown) {
-            alert("Pozor! Tvé zdraví je na kritické úrovni. Pokud klesne na nulu, hra končí!");
+            // Replace alert with visual indication
+            const healthWarning = document.createElement('div');
+            healthWarning.textContent = "Pozor! Tvé zdraví je na kritické úrovni. Pokud klesne na nulu, hra končí!";
+            healthWarning.style.color = '#FF5722';
+            healthWarning.style.fontWeight = 'bold';
+            healthWarning.style.padding = '10px';
+            healthWarning.style.backgroundColor = 'rgba(255, 87, 34, 0.2)';
+            healthWarning.style.borderRadius = '5px';
+            healthWarning.style.marginTop = '10px';
+            document.getElementById('sceneText').appendChild(healthWarning);
             gameState.lowHealthWarningShown = true;
         }
     }
@@ -2446,8 +2465,16 @@ function updateProjectTime() {
         
         // Kontrola vypršení termínu
         if (gameState.projects.semesterProject.remainingTime === 0) {
-            // Zobrazit upozornění při dalším přesunu
-            alert("Právě vypršel termín odevzdání tvého projektu! Pokud ho co nejdříve neodevzdáš, budeš penalizován/a!");
+            // Replace alert with visual notification
+            const deadlineWarning = document.createElement('div');
+            deadlineWarning.textContent = "Právě vypršel termín odevzdání tvého projektu! Pokud ho co nejdříve neodevzdáš, budeš penalizován/a!";
+            deadlineWarning.style.color = '#FF5722';
+            deadlineWarning.style.fontWeight = 'bold';
+            deadlineWarning.style.padding = '10px';
+            deadlineWarning.style.backgroundColor = 'rgba(255, 87, 34, 0.2)';
+            deadlineWarning.style.borderRadius = '5px';
+            deadlineWarning.style.marginTop = '10px';
+            document.getElementById('sceneText').appendChild(deadlineWarning);
         }
     }
 }
@@ -2696,15 +2723,44 @@ function showExam() {
             // 30% šance na úspěch
             if (Math.random() < 0.3) {
                 // Úspěch
-                alert('Učitel přijal úplatek! Úspěšně jste prošli zkouškou.');
-                showExamResults(true); // Předáme true, což znamená úspěch
+                // Replace alert with loadScene function
+                const successMessage = document.createElement('div');
+                successMessage.textContent = 'Učitel přijal úplatek! Úspěšně jste prošli zkouškou.';
+                successMessage.style.color = '#28a745';
+                successMessage.style.fontWeight = 'bold';
+                successMessage.style.padding = '10px';
+                successMessage.style.marginTop = '10px';
+                document.querySelector('.exam-container').appendChild(successMessage);
+                
+                // Delay to allow user to read the message
+                setTimeout(() => {
+                    showExamResults(true); // Předáme true, což znamená úspěch
+                }, 1500);
             } else {
                 // Neúspěch - game over
-                alert('Učitel odmítl úplatek a nahlásil vás! Game over.');
-                showGameOverScreen('Byli jste vyloučeni za pokus o podplacení učitele!');
+                // Replace alert with visual notification
+                const failureMessage = document.createElement('div');
+                failureMessage.textContent = 'Učitel odmítl úplatek a nahlásil vás! Game over.';
+                failureMessage.style.color = '#dc3545';
+                failureMessage.style.fontWeight = 'bold';
+                failureMessage.style.padding = '10px';
+                failureMessage.style.marginTop = '10px';
+                document.querySelector('.exam-container').appendChild(failureMessage);
+                
+                // Delay to allow user to read the message
+                setTimeout(() => {
+                    showGameOverScreen('Byli jste vyloučeni za pokus o podplacení učitele!');
+                }, 1500);
             }
         } else {
-            alert('Nemáte dostatek peněz na podplacení učitele!');
+            // Replace alert with visual message
+            const insufficientFundsMessage = document.createElement('div');
+            insufficientFundsMessage.textContent = 'Nemáte dostatek peněz na podplacení učitele!';
+            insufficientFundsMessage.style.color = '#ffc107';
+            insufficientFundsMessage.style.fontWeight = 'bold';
+            insufficientFundsMessage.style.padding = '10px';
+            insufficientFundsMessage.style.marginTop = '10px';
+            document.querySelector('.exam-container').appendChild(insufficientFundsMessage);
         }
     });
     
