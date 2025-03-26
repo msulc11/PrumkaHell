@@ -617,7 +617,7 @@ Máš u sebe ${gameState.money} Kč.`;
         text: function() {
             return `Vstoupíš do učebny U5, kde už sedí několik studentů. Místnost je vybavena moderní technologií - počítače s velkými monitory, interaktivní tabule a uprostřed učitelský stůl. Na zdi visí plakáty s počítačovými komponenty a síťovými diagramy. Profesor ještě nedorazil, takže máš čas se rozkoukat.`;
         },
-        image: "images/computer_classroom.jpg",
+        image: "images/classroom.jpg",
         choices: [
             { text: "Sednout si a počkat na profesora", nextScene: "standardQuiz", action: () => {
                 gameState.attendedClass = true;

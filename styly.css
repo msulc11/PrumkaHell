@@ -176,7 +176,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('https://via.placeholder.com/800x400/0a192f/64ffda?text=PRUMKA+HELL');
+    background-image: url('images/finalboss.jpg');
     transition: background-image 0.5s ease;
     box-shadow: 0 5px 15px rgba(2, 12, 27, 0.5);
     border: 1px solid #1f4287;
